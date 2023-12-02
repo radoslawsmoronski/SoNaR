@@ -67,20 +67,20 @@ namespace RegistrySimulator
                 {
                     case "AX":
                         ax = value;
-                        axTextBlock.Text = "AX: " + ax.ToString();
+                        axTextBlock.Text = "AX: " + ax.ToString("X");
                         break;
                     case "BX":
                         bx = value;
-                        bxTextBlock.Text = "BX: " + bx.ToString();
+                        bxTextBlock.Text = "BX: " + bx.ToString("X");
                         break;
                     case "CX":
                         cx = value;
-                        cxTextBlock.Text = "CX: " + cx.ToString();
-                    break;
+                        cxTextBlock.Text = "CX: " + cx.ToString("X");
+                        break;
                     case "DX":
                         dx = value;
-                        dxTextBlock.Text = "DX: " + dx.ToString();
-                    break;
+                        dxTextBlock.Text = "DX: " + dx.ToString("X");
+                        break;
                 }
             }
             else
