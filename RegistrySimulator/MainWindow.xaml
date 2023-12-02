@@ -32,7 +32,7 @@
         <TextBlock Grid.Row="2" Margin="10,10,10,110" Text="Operacja MOV" TextAlignment="Center" />
         <ComboBox x:Name="movLComboBox"  Grid.Row="2" Margin="50,62,170,62" Width="80" Height="25" SelectedIndex="0"/>
         <ComboBox x:Name="movRComboBox" Grid.Row="2" Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
-        <Button Grid.Row="2" Content="MOV" Margin="40,88,40,24" Width="200" Height="25"/>
+        <Button Grid.Row="2" Content="Wykonaj MOV" Margin="40,88,40,24" Width="200" Height="25" Click="MovClick"/>
         <Image x:Name="movArrowImage"  Source="right-arrow.png" Grid.Row="2" Margin="0,62,0,62" Width="20" Height="20"/>
 
     </Grid>

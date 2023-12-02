@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -61,27 +62,9 @@ namespace RegistrySimulator
                 insertTextBox.Text = "";
                 return;
             }
-            else if (IsHexadecimal(insertValue, out int  value))
+            else if (isHexadecimal(insertValue, out int  value))
             {
-                switch (selectedObject)
-                {
-                    case "AX":
-                        ax = value;
-                        axTextBlock.Text = "AX: " + ax.ToString("X");
-                        break;
-                    case "BX":
-                        bx = value;
-                        bxTextBlock.Text = "BX: " + bx.ToString("X");
-                        break;
-                    case "CX":
-                        cx = value;
-                        cxTextBlock.Text = "CX: " + cx.ToString("X");
-                        break;
-                    case "DX":
-                        dx = value;
-                        dxTextBlock.Text = "DX: " + dx.ToString("X");
-                        break;
-                }
+                setRegistry(selectedObject.ToString(), value);
             }
             else
             {
@@ -91,7 +74,36 @@ namespace RegistrySimulator
             }
         }
 
-        static bool IsHexadecimal(string input, out int value)
+        private void MovClick(object sender, RoutedEventArgs e)
+        {
+            var selectedObject = movLComboBox.SelectedItem;
+            var selectedObject2 = movRComboBox.SelectedItem;
+        }
+
+        public void setRegistry(string registry, int value)
+        {
+            switch (registry)
+            {
+                case "AX":
+                    ax = value;
+                    axTextBlock.Text = "AX: " + ax.ToString("X");
+                    break;
+                case "BX":
+                    bx = value;
+                    bxTextBlock.Text = "BX: " + bx.ToString("X");
+                    break;
+                case "CX":
+                    cx = value;
+                    cxTextBlock.Text = "CX: " + cx.ToString("X");
+                    break;
+                case "DX":
+                    dx = value;
+                    dxTextBlock.Text = "DX: " + dx.ToString("X");
+                    break;
+            }
+        }
+
+        static bool isHexadecimal(string input, out int value)
         {
             return int.TryParse(input, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
         }
