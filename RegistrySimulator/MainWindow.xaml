@@ -23,7 +23,7 @@
 
         <!-- Content for the second row -->
         <TextBlock Grid.Row="1" Margin="10,10,10,110" Text="Wprowadzanie danych" TextAlignment="Center" />
-        <TextBox Grid.Row="1" Margin="50,62,170,62" Width="80" Height="25"/>
+        <TextBox x:Name="insertTextBox" Grid.Row="1" Margin="50,62,170,62" Width="80" Height="25"/>
         <ComboBox x:Name="insertComboBox"  Grid.Row="1" Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
         <Button Grid.Row="1" Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
         <Image x:Name="insrtArrowImage" Source="right-arrow.png" Grid.Row="1" Margin="0,62,0,62" Width="20" Height="20"/>
