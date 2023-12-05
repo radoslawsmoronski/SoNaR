@@ -73,6 +73,11 @@ namespace RegistrySimulator
             }
         }
 
+        private void XchgClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void refreshValues()
         {
             // Refresh the displayed values in the window
