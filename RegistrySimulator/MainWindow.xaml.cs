@@ -61,21 +61,38 @@ namespace RegistrySimulator
         private void MovClick(object sender, RoutedEventArgs e)
         {
             // Handle the Mov button click
-            string copyName = movLComboBox.SelectedItem.ToString().Substring(0, 2);
-            string pastName = movRComboBox.SelectedItem.ToString().Substring(0, 2);
+            string firstRegisterInsertName = movLComboBox.SelectedItem.ToString().Substring(0, 2);
+            string secondRegisterInserName = movRComboBox.SelectedItem.ToString().Substring(0, 2);
 
-            int first = RegisterSimulator.GetRegistryFromString(copyName);
+            int firstRegisterValue = RegisterSimulator.GetRegistryValueFromString(firstRegisterInsertName);
+            int secondRegisterValue = RegisterSimulator.GetRegistryValueFromString(secondRegisterInserName);
 
-            if (RegisterSimulator.SetRegistry(pastName, first))
+            if (RegisterSimulator.SetRegistry(secondRegisterInserName, firstRegisterValue))
             {
                 // Refresh values if setting the registry is successful
+                MessageBox.Show($"Na rejestry {firstRegisterInsertName} ({firstRegisterValue.ToString("X")})" +
+                    $" oraz {secondRegisterInserName} ({secondRegisterValue.ToString("X")}) zostałą wykonana operacja MOV.");
                 refreshValues();
             }
         }
 
         private void XchgClick(object sender, RoutedEventArgs e)
         {
+            // Handle the Xchg button click
+            string firstRegisterInsertName = xchgLComboBox.SelectedItem.ToString().Substring(0, 2);
+            string secondRegisterInserName = xchgRComboBox.SelectedItem.ToString().Substring(0, 2);
 
+            int firstRegisterValue = RegisterSimulator.GetRegistryValueFromString(firstRegisterInsertName);
+            int secondRegisterValue = RegisterSimulator.GetRegistryValueFromString(secondRegisterInserName);
+
+            if (RegisterSimulator.SetRegistry(firstRegisterInsertName, secondRegisterValue) &&
+                RegisterSimulator.SetRegistry(secondRegisterInserName, firstRegisterValue))
+            {
+                // Refresh values if setting the registry is successful
+                MessageBox.Show($"Na rejestry {firstRegisterInsertName} ({firstRegisterValue.ToString("X")})" +
+                    $" oraz {secondRegisterInserName} ({secondRegisterValue.ToString("X")}) zostałą wykonana operacja XCHG.");
+                refreshValues();
+            }
         }
 
         private void refreshValues()
@@ -118,6 +135,30 @@ namespace RegistrySimulator
             movRComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
             movRComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
             movRComboBox.SelectedIndex = movRComboBoxSelectedIndex;
+
+            // Preserve selected index or default to 0 if not selected
+            int xchgLComboBoxSelectedIndex = xchgLComboBox.SelectedIndex == -1 ? 0 : xchgLComboBox.SelectedIndex;
+
+            // Clear and populate the xchgL ComboBox
+            xchgLComboBox.Items.Clear();
+            xchgLComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+            xchgLComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+            xchgLComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+            xchgLComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            xchgLComboBox.SelectedIndex = xchgLComboBoxSelectedIndex;
+
+            // Preserve selected index or default to 0 if not selected
+            int xchgRComboBoxSelectedIndex = xchgRComboBox.SelectedIndex == -1 ? 0 : xchgRComboBox.SelectedIndex;
+
+            // Clear and populate the xchgR ComboBox
+            xchgRComboBox.Items.Clear();
+            xchgRComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+            xchgRComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+            xchgRComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+            xchgRComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            xchgRComboBox.SelectedIndex = xchgRComboBoxSelectedIndex;
+
+
         }
 
     }

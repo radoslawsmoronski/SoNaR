@@ -16,10 +16,12 @@
         </Grid.RowDefinitions>
 
         <!-- Content for the first row -->
-        <TextBlock x:Name="axTextBlock" Grid.Row="0" Margin="0,10,0,95" Text="AX: " />
-        <TextBlock x:Name="bxTextBlock" Grid.Row="0" Margin="0,37,0,70" Text="BX: " />
-        <TextBlock x:Name="cxTextBlock" Grid.Row="0" Margin="0,63,0,45" Text="CX: " />
-        <TextBlock x:Name="dxTextBlock" Grid.Row="0" Margin="0,89,0,20" Text="DX: " />
+        <TextBlock x:Name="axTextBlock" Grid.Row="0" Margin="0,10,110,95" Text="AX: " />
+        <TextBlock x:Name="bxTextBlock" Grid.Row="0" Margin="0,37,110,70" Text="BX: " />
+        <TextBlock x:Name="cxTextBlock" Grid.Row="0" Margin="0,63,110,45" Text="CX: " />
+        <TextBlock x:Name="dxTextBlock" Grid.Row="0" Margin="0,89,110,20" Text="DX: " />
+
+        <Image Grid.Row="0" Source="icon.ico" Margin="226,10,2,20"/>
 
         <!-- Content for the second row -->
         <TextBlock Grid.Row="1" Margin="10,10,10,110" Text="Wprowadzanie danych" TextAlignment="Center" />

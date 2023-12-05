@@ -56,7 +56,7 @@ namespace RegistrySimulator
         }
 
         // Method to get registry value from a specified register name
-        public static int GetRegistryFromString(string registerName)
+        public static int GetRegistryValueFromString(string registerName)
         {
             PropertyInfo property = typeof(RegisterSimulator).GetProperty(registerName);
 
