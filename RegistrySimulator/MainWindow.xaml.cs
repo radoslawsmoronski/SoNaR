@@ -23,52 +23,36 @@ namespace RegistrySimulator
     public partial class MainWindow : Window
     {
 
-        int ax, bx, cx, dx;
-
         public MainWindow()
         {
             InitializeComponent();
 
-            insertElementsToComboBoxes();
-
-        }
-
-        private void insertElementsToComboBoxes()
-        {
-            insertComboBox.Items.Add("AX");
-            insertComboBox.Items.Add("BX");
-            insertComboBox.Items.Add("CX");
-            insertComboBox.Items.Add("DX");
-
-            movLComboBox.Items.Add("AX");
-            movLComboBox.Items.Add("BX");
-            movLComboBox.Items.Add("CX");
-            movLComboBox.Items.Add("DX");
-
-            movRComboBox.Items.Add("AX");
-            movRComboBox.Items.Add("BX");
-            movRComboBox.Items.Add("CX");
-            movRComboBox.Items.Add("DX");
+            // Initialize the window and refresh the values
+            refreshValues();
         }
 
         private void InsertClick(object sender, RoutedEventArgs e)
         {
-            var selectedObject = insertComboBox.SelectedItem;
+            // Handle the Insert button click
+            string selectedObject = insertComboBox.SelectedItem.ToString().Substring(0, 2);
             string insertValue = insertTextBox.Text.Replace(" ", "");
 
             if (insertValue == "" || insertValue == null)
             {
-                MessageBox.Show("Nie podano żadnej wartości.");
+                // Show a message if no value is provided
+                MessageBox.Show("No value provided.");
                 insertTextBox.Text = "";
                 return;
             }
-            else if (isHexadecimal(insertValue, out int  value))
+            else if (RegisterSimulator.SetRegistry(selectedObject.ToString(), insertValue))
             {
-                setRegistry(selectedObject.ToString(), value);
+                // Refresh values if setting the registry is successful
+                refreshValues();
             }
             else
             {
-                MessageBox.Show("Podana wartość nie jest liczbą heksadecy.");
+                // Show a message if the provided value is not a hexadecimal number
+                MessageBox.Show("The provided value is not a hexadecimal number.");
                 insertTextBox.Text = "";
                 return;
             }
@@ -76,36 +60,59 @@ namespace RegistrySimulator
 
         private void MovClick(object sender, RoutedEventArgs e)
         {
-            var selectedObject = movLComboBox.SelectedItem;
-            var selectedObject2 = movRComboBox.SelectedItem;
-        }
+            // Handle the Mov button click
+            string copyName = movLComboBox.SelectedItem.ToString().Substring(0, 2);
+            string pastName = movRComboBox.SelectedItem.ToString().Substring(0, 2);
 
-        public void setRegistry(string registry, int value)
-        {
-            switch (registry)
+            int first = RegisterSimulator.GetRegistryFromString(copyName);
+
+            if (RegisterSimulator.SetRegistry(pastName, first))
             {
-                case "AX":
-                    ax = value;
-                    axTextBlock.Text = "AX: " + ax.ToString("X");
-                    break;
-                case "BX":
-                    bx = value;
-                    bxTextBlock.Text = "BX: " + bx.ToString("X");
-                    break;
-                case "CX":
-                    cx = value;
-                    cxTextBlock.Text = "CX: " + cx.ToString("X");
-                    break;
-                case "DX":
-                    dx = value;
-                    dxTextBlock.Text = "DX: " + dx.ToString("X");
-                    break;
+                // Refresh values if setting the registry is successful
+                refreshValues();
             }
         }
 
-        static bool isHexadecimal(string input, out int value)
+        private void refreshValues()
         {
-            return int.TryParse(input, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
+            // Refresh the displayed values in the window
+            axTextBlock.Text = "AX: " + RegisterSimulator.AX.ToString("X");
+            bxTextBlock.Text = "BX: " + RegisterSimulator.BX.ToString("X");
+            cxTextBlock.Text = "CX: " + RegisterSimulator.CX.ToString("X");
+            dxTextBlock.Text = "DX: " + RegisterSimulator.DX.ToString("X");
+
+            // Preserve selected index or default to 0 if not selected
+            int insertComboBoxSelectedIndex = insertComboBox.SelectedIndex == -1 ? 0 : insertComboBox.SelectedIndex;
+
+            // Clear and populate the Insert ComboBox
+            insertComboBox.Items.Clear();
+            insertComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+            insertComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+            insertComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+            insertComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            insertComboBox.SelectedIndex = insertComboBoxSelectedIndex;
+
+            // Preserve selected index or default to 0 if not selected
+            int movLComboBoxSelectedIndex = movLComboBox.SelectedIndex == -1 ? 0 : movLComboBox.SelectedIndex;
+
+            // Clear and populate the MovL ComboBox
+            movLComboBox.Items.Clear();
+            movLComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+            movLComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+            movLComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+            movLComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            movLComboBox.SelectedIndex = movLComboBoxSelectedIndex;
+
+            // Preserve selected index or default to 0 if not selected
+            int movRComboBoxSelectedIndex = movRComboBox.SelectedIndex == -1 ? 0 : movRComboBox.SelectedIndex;
+
+            // Clear and populate the MovR ComboBox
+            movRComboBox.Items.Clear();
+            movRComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+            movRComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+            movRComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+            movRComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            movRComboBox.SelectedIndex = movRComboBoxSelectedIndex;
         }
 
     }

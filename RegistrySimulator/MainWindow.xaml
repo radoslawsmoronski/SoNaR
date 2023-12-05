@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:RegistrySimulator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="360">
+        Title="Registry Simulator" Height="500" Width="360" ResizeMode="NoResize">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="125" />
