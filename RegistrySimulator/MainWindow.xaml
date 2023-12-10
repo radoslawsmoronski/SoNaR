@@ -7,13 +7,14 @@
         xmlns:local="clr-namespace:RegistrySimulator"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Height="550" Width="380"
+        Height="620" Width="380"
         ResizeMode="NoResize"
         Title="SOnaR - Symulator Operacji na Rejestrach">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="125" />
-            <RowDefinition Height="150" />
+            <RowDefinition Height="190" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="190" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
@@ -23,19 +24,36 @@
         <TextBlock x:Name="bxTextBlock" Grid.Row="0" Margin="0,37,110,70" Text="BX: " />
         <TextBlock x:Name="cxTextBlock" Grid.Row="0" Margin="0,63,110,45" Text="CX: " />
         <TextBlock x:Name="dxTextBlock" Grid.Row="0" Margin="0,89,110,20" Text="DX: " />
+        
 
         <Image Grid.Row="0" Source="icon.ico" Margin="226,10,2,20"/>
 
         <!-- Content for the second row -->
-        <TextBlock Grid.Row="1" Margin="10,10,10,110" Text="Wprowadzanie danych" TextAlignment="Center" />
-        <TextBox x:Name="insertTextBox" Grid.Row="1" Margin="50,62,170,62" Width="80" Height="25"/>
-        <ComboBox x:Name="insertComboBox"  Grid.Row="1" Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
-        <Button Grid.Row="1" Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
-        <Image x:Name="insrtArrowImage" Source="right-arrow.png" Grid.Row="1" Margin="0,62,0,62" Width="20" Height="20"/>
 
-        <!-- Content for the third row -->
+        <TabControl Grid.Row="1">
+            <TabItem Header="beta">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych" TextAlignment="Center" />
+                    <TextBox x:Name="insertTextBox" Margin="57,45,177,52" Width="80" Height="25"/>
+                    <ComboBox x:Name="insertComboBox"  Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
+                    <Button Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
+                    <Image x:Name="insrtArrowImage" Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
+                </Grid>
+            </TabItem>
+            <!--<TabItem Header="BX, BP, DI, SI">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych do BX, BP, DI, SI" TextAlignment="Center" />
+                    <TextBox x:Name="insert2TextBox" Margin="57,45,177,52" Width="80" Height="25"/>
+                    <ComboBox x:Name="insert2ComboBox"  Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
+                    <Button Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
+                    <Image x:Name="insrt2ArrowImage" Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
+                </Grid>
+            </TabItem>-->
+        </TabControl>
 
-        <TabControl Grid.Row="2">
+            <!-- Content for the third row -->
+
+        <TabControl Grid.Row="3">
             <TabItem Header="MOV">
                 <Grid Background="#FFE5E5E5">
                     <TextBlock Margin="10,10,10,94" Text="Operacja MOV" TextAlignment="Center" />
@@ -52,6 +70,15 @@
                     <ComboBox x:Name="xchgRComboBox" Margin="177,45,57,52" Width="80" Height="25" SelectedIndex="0"/>
                     <Button Content="Wykonaj XCHG" Margin="40,88,40,24" Width="200" Height="25" Click="XchgClick"/>
                     <Image x:Name="xchgArrowImage"  Source="xchg-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="MOV R->R">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock Margin="10,10,10,94" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" />
+                    <ComboBox x:Name="movRamLComboBox" Margin="57,45,177,52" Width="80" Height="25" SelectedIndex="0"/>
+                    <ComboBox x:Name="movRamRComboBox" Margin="177,45,57,52" Width="80" Height="25" SelectedIndex="0"/>
+                    <Button Content="Wykonaj MOV R->R" Margin="40,88,40,24" Width="200" Height="25" Click="MovClick"/>
+                    <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
                 </Grid>
             </TabItem>
         </TabControl>
