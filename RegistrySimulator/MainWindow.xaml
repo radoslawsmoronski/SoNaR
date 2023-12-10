@@ -6,7 +6,10 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:RegistrySimulator"
         mc:Ignorable="d"
-        Title="Registry Simulator" Height="550" Width="380" ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen"
+        Height="550" Width="380"
+        ResizeMode="NoResize"
+        Title="SOnaR - Symulator Operacji na Rejestrach">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="125" />

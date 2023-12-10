@@ -34,19 +34,20 @@ namespace RegistrySimulator
         private void InsertClick(object sender, RoutedEventArgs e)
         {
             // Handle the Insert button click
-            string selectedObject = insertComboBox.SelectedItem.ToString().Substring(0, 2);
-            string insertValue = insertTextBox.Text.Replace(" ", "");
+            string registerInsertName = insertComboBox.SelectedItem.ToString().Substring(0, 2);
+            string registerValue = insertTextBox.Text.Replace(" ", "");
 
-            if (insertValue == "" || insertValue == null)
+            if (registerValue == "" || registerValue == null)
             {
                 // Show a message if no value is provided
                 MessageBox.Show("No value provided.");
                 insertTextBox.Text = "";
                 return;
             }
-            else if (RegisterSimulator.SetRegistry(selectedObject.ToString(), insertValue))
+            else if (RegisterSimulator.SetRegistry(registerInsertName, registerValue))
             {
                 // Refresh values if setting the registry is successful
+                MessageBox.Show($"Wprowadzono wartość {registerValue} do rejestru {registerInsertName}.");
                 refreshValues();
             }
             else
