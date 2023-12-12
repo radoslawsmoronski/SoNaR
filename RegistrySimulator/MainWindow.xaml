@@ -7,53 +7,66 @@
         xmlns:local="clr-namespace:RegistrySimulator"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Height="620" Width="380"
+        Height="500" Width="780"
         ResizeMode="NoResize"
         Title="SOnaR - Symulator Operacji na Rejestrach">
     <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/> <!-- including and editing column  -->
+            <ColumnDefinition Width="20"/> <!-- space column -->
+            <ColumnDefinition Width="350"/> <!-- data view column -->
+        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="125" />
             <RowDefinition Height="190" />
             <RowDefinition Height="25" />
             <RowDefinition Height="190" />
-            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <!-- Content for the first row -->
-        <TextBlock x:Name="axTextBlock" Grid.Row="0" Margin="0,10,110,95" Text="AX: " />
-        <TextBlock x:Name="bxTextBlock" Grid.Row="0" Margin="0,37,110,70" Text="BX: " />
-        <TextBlock x:Name="cxTextBlock" Grid.Row="0" Margin="0,63,110,45" Text="CX: " />
-        <TextBlock x:Name="dxTextBlock" Grid.Row="0" Margin="0,89,110,20" Text="DX: " />
-        
 
-        <Image Grid.Row="0" Source="icon.ico" Margin="226,10,2,20"/>
+        <!-- Content for view column (2) -->
+        <Grid Grid.Column="2" Grid.Row="0">
+            <TextBlock x:Name="axTextBlock" Margin="0,2,129,166.25" Text="AX: " />
+            <TextBlock x:Name="bxTextBlock" Margin="0,25.75,129,142" Text="BX: " />
+            <TextBlock x:Name="cxTextBlock" Margin="0,49.5,129,118" Text="CX: " />
+            <TextBlock x:Name="dxTextBlock" Margin="0,73.25,129,95" Text="DX: " />
+            <TextBlock x:Name="bpTextBlock" Margin="0,97,129,71.25" Text="BP: " />
+            <TextBlock x:Name="diTextBlock" Margin="0,120.75,129,47.5" Text="DI: " />
+            <TextBlock x:Name="siTextBlock" Margin="0,144,129,23.75" Text="SI: " />
+            <TextBlock x:Name="osTextBlock" Margin="0,168.25,129,0" Text="offset: " />
 
-        <!-- Content for the second row -->
+            <Image Grid.Column="2" Source="icon.ico" Margin="226,10,2,20"/>
+        </Grid>
 
-        <TabControl Grid.Row="1">
-            <TabItem Header="beta">
+        <Grid Grid.Column="2" Grid.Row="2">
+            <ListBox d:ItemsSource="{d:SampleData ItemCount=20}" Margin="0,23,0,0"/>
+            <TextBlock Text="Dane w pamięi operacynej"  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="350"/>
+        </Grid>
+
+        <!-- including and editing column (0) -->
+
+        <TabControl Grid.Row="0" Grid.Column="0">
+            <TabItem Header="AX, BX, CX, DX">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych" TextAlignment="Center" />
+                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych AX, BX, CX, DX" TextAlignment="Center" />
                     <TextBox x:Name="insertTextBox" Margin="57,45,177,52" Width="80" Height="25"/>
                     <ComboBox x:Name="insertComboBox"  Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
                     <Button Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
                     <Image x:Name="insrtArrowImage" Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
                 </Grid>
             </TabItem>
-            <!--<TabItem Header="BX, BP, DI, SI">
+            <TabItem Header="BP, DI, SI, offset">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych do BX, BP, DI, SI" TextAlignment="Center" />
+                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych do BP, DI, SI, offset" TextAlignment="Center" />
                     <TextBox x:Name="insert2TextBox" Margin="57,45,177,52" Width="80" Height="25"/>
                     <ComboBox x:Name="insert2ComboBox"  Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
                     <Button Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
                     <Image x:Name="insrt2ArrowImage" Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
                 </Grid>
-            </TabItem>-->
+            </TabItem>
         </TabControl>
 
-            <!-- Content for the third row -->
-
-        <TabControl Grid.Row="3">
+        <TabControl Grid.Row="2">
             <TabItem Header="MOV">
                 <Grid Background="#FFE5E5E5">
                     <TextBlock Margin="10,10,10,94" Text="Operacja MOV" TextAlignment="Center" />
