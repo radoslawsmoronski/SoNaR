@@ -76,7 +76,7 @@ namespace RegistrySimulator
             }
 
             //registers name to foreach
-            string[] registerNames = { "AX", "BX", "CX", "DX", "BP", "DI", "SI", "Offset"};
+            string[] registerNames = { "AX", "BX", "CX", "DX", "BP", "DI", "SI", "Of"};
 
             Random random = new Random();
 

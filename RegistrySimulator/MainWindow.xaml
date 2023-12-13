@@ -79,11 +79,18 @@
             </TabItem>
             <TabItem Header="MOV R->R">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock Margin="10,10,10,94" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" />
-                    <ComboBox x:Name="movRamLComboBox" Margin="57,45,177,52" Width="80" Height="25" SelectedIndex="0"/>
-                    <ComboBox x:Name="movRamRComboBox" Margin="177,45,57,52" Width="80" Height="25" SelectedIndex="0"/>
+                    <TextBlock Margin="10,10,10,128" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" />
+                    <ComboBox x:Name="movRamLComboBox" Margin="26,65,238,72" Width="80" Height="25" SelectedIndex="0"/>
+                    <ComboBox x:Name="movRamRComboBox" Margin="117,65,147,72" Width="80" Height="25" SelectedIndex="0"/>
                     <Button Content="Wykonaj MOV R->R" Margin="40,88,40,24" Width="200" Height="25" Click="MovClick"/>
-                    <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
+                    <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="212,68,112,74" Width="20" Height="20" RenderTransformOrigin="0.53,0.563"/>
+                    <TextBlock Margin="37,44,249,96" Text="Rejestr" TextAlignment="Center" ></TextBlock>
+                    <TextBlock Margin="112,44,144,97" Text="Adresowanie" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" ></TextBlock>
+                    <TextBlock Margin="236,44,20,97" Text="Adres pamięci" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" ></TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="0.5" Margin="243,65,26,72">
+                        <TextBlock Text="brak" TextAlignment="Center" Margin="0,3,0,0"/>
+                    </Border>
+
                 </Grid>
             </TabItem>
         </TabControl>
