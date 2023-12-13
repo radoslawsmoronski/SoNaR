@@ -59,6 +59,41 @@ namespace RegistrySimulator
             }
         }
 
+        private void RandomClick(object sender, RoutedEventArgs e)
+        {
+            // Handle the Random button click
+
+            // MessageBox to accept operation
+            MessageBoxResult result = MessageBox.Show(
+                "Czy na pewno chcesz ustawić na rejestry losowe dane?",
+                "Losowe dane",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            //registers name to foreach
+            string[] registerNames = { "AX", "BX", "CX", "DX", "BP", "DI", "SI", "Offset"};
+
+            Random random = new Random();
+
+            foreach(string registerName in registerNames)
+            {
+                //Getting random value to register
+                int randomValue = random.Next(1, 101);
+
+                //Setting register
+                RegisterSimulator.SetRegistry(registerName, randomValue);
+            }
+
+            MessageBox.Show($"Operacja została wykonana.");
+            refreshValues();
+
+        }
+
         private void MovClick(object sender, RoutedEventArgs e)
         {
             // Handle the Mov button click
@@ -103,6 +138,10 @@ namespace RegistrySimulator
             bxTextBlock.Text = "BX: " + RegisterSimulator.BX.ToString("X");
             cxTextBlock.Text = "CX: " + RegisterSimulator.CX.ToString("X");
             dxTextBlock.Text = "DX: " + RegisterSimulator.DX.ToString("X");
+            bpTextBlock.Text = "BP: " + RegisterSimulator.BP.ToString("X");
+            diTextBlock.Text = "DI: " + RegisterSimulator.DI.ToString("X");
+            siTextBlock.Text = "SI: " + RegisterSimulator.SI.ToString("X");
+            osTextBlock.Text = "Offset: " + RegisterSimulator.Of.ToString("X");
 
             // Preserve selected index or default to 0 if not selected
             int insertComboBoxSelectedIndex = insertComboBox.SelectedIndex == -1 ? 0 : insertComboBox.SelectedIndex;
@@ -113,6 +152,10 @@ namespace RegistrySimulator
             insertComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
             insertComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
             insertComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            insertComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+            insertComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+            insertComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+            insertComboBox.Items.Add($"Offset ({RegisterSimulator.Of.ToString("X")})");
             insertComboBox.SelectedIndex = insertComboBoxSelectedIndex;
 
             // Preserve selected index or default to 0 if not selected
@@ -124,6 +167,10 @@ namespace RegistrySimulator
             movLComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
             movLComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
             movLComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            movLComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+            movLComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+            movLComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+            movLComboBox.Items.Add($"Offset ({RegisterSimulator.Of.ToString("X")})");
             movLComboBox.SelectedIndex = movLComboBoxSelectedIndex;
 
             // Preserve selected index or default to 0 if not selected
@@ -135,6 +182,10 @@ namespace RegistrySimulator
             movRComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
             movRComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
             movRComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            movRComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+            movRComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+            movRComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+            movRComboBox.Items.Add($"Offset ({RegisterSimulator.Of.ToString("X")})");
             movRComboBox.SelectedIndex = movRComboBoxSelectedIndex;
 
             // Preserve selected index or default to 0 if not selected
@@ -146,6 +197,10 @@ namespace RegistrySimulator
             xchgLComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
             xchgLComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
             xchgLComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            xchgLComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+            xchgLComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+            xchgLComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+            xchgLComboBox.Items.Add($"Offset ({RegisterSimulator.Of.ToString("X")})");
             xchgLComboBox.SelectedIndex = xchgLComboBoxSelectedIndex;
 
             // Preserve selected index or default to 0 if not selected
@@ -157,6 +212,10 @@ namespace RegistrySimulator
             xchgRComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
             xchgRComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
             xchgRComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+            xchgRComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+            xchgRComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+            xchgRComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+            xchgRComboBox.Items.Add($"Offset ({RegisterSimulator.Of.ToString("X")})");
             xchgRComboBox.SelectedIndex = xchgRComboBoxSelectedIndex;
 
 

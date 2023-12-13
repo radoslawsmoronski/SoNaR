@@ -19,6 +19,10 @@ namespace RegistrySimulator
         public static int BX { get; set; }
         public static int CX { get; set; }
         public static int DX { get; set; }
+        public static int BP { get; set; }
+        public static int DI { get; set; }
+        public static int SI { get; set; }
+        public static int Of { get; set; }
 
         // Method to set registry value based on register name and value
         public static bool SetRegistry(string registerName, object value)
@@ -66,7 +70,7 @@ namespace RegistrySimulator
             }
             else
             {
-                MessageBox.Show("Error: Unknown register name"); // Register name not found
+                MessageBox.Show("Error: Unknown register name - " + registerName); // Register name not found
                 return 0;
             }
         }

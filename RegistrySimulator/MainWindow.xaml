@@ -45,26 +45,18 @@
 
         <!-- including and editing column (0) -->
 
-        <TabControl Grid.Row="0" Grid.Column="0">
-            <TabItem Header="AX, BX, CX, DX">
-                <Grid Background="#FFE5E5E5">
-                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych AX, BX, CX, DX" TextAlignment="Center" />
-                    <TextBox x:Name="insertTextBox" Margin="57,45,177,52" Width="80" Height="25"/>
-                    <ComboBox x:Name="insertComboBox"  Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
-                    <Button Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
-                    <Image x:Name="insrtArrowImage" Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
+        <!--<TabControl Grid.Row="0" Grid.Column="0">
+            <TabItem Header="AX, BX, CX, DX">-->
+                <Grid Background="#FFE5E5E5" Grid.Row="0" Grid.Column="0">
+                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych" TextAlignment="Center" />
+                    <TextBox x:Name="insertTextBox" Margin="75,30,195,62" Width="80" Height="25"/>
+                    <ComboBox x:Name="insertComboBox"  Margin="170,30,50,62" Width="80" Height="25" SelectedIndex="0"/>
+                    <Button Content="Wprowadź" Margin="75,107,75,58" Width="200" Height="25" Click="InsertClick"/>
+                    <Button Content="Losowane dane" Margin="40,140,40,24" Width="200" Height="25" Click="RandomClick"/>
+                    <Image x:Name="insrtArrowImage" Source="right-arrow.png" Margin="165,69,165,101" Width="20" Height="20"/>
                 </Grid>
-            </TabItem>
-            <TabItem Header="BP, DI, SI, offset">
-                <Grid Background="#FFE5E5E5">
-                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych do BP, DI, SI, offset" TextAlignment="Center" />
-                    <TextBox x:Name="insert2TextBox" Margin="57,45,177,52" Width="80" Height="25"/>
-                    <ComboBox x:Name="insert2ComboBox"  Margin="170,62,50,62" Width="80" Height="25" SelectedIndex="0"/>
-                    <Button Content="Wprowadź" Margin="40,88,40,24" Width="200" Height="25" Click="InsertClick"/>
-                    <Image x:Name="insrt2ArrowImage" Source="right-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
+            <!--</TabItem>
+        </TabControl>-->
 
         <TabControl Grid.Row="2">
             <TabItem Header="MOV">
