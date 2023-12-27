@@ -23,5 +23,16 @@ namespace RegistrySimulator
         {
             return memory.ContainsKey(address) ? memory[address] : 0; 
         }
+
+        //new thing to do
+        public int getAddressByType(int type, int value)
+        {
+            switch(type)
+            {
+                case 1: return value+RegisterSimulator.Of;
+                case 2: return value;
+            }
+            return 1;
+        }
     }
 }

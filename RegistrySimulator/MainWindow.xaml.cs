@@ -133,6 +133,7 @@ namespace RegistrySimulator
 
         private void refreshValues()
         {
+            //-- DISPLAY SECTION --
             // Refresh the displayed values in the window
             axTextBlock.Text = "AX: " + RegisterSimulator.AX.ToString("X");
             bxTextBlock.Text = "BX: " + RegisterSimulator.BX.ToString("X");
@@ -146,6 +147,9 @@ namespace RegistrySimulator
             // Preserve selected index or default to 0 if not selected
             int insertComboBoxSelectedIndex = insertComboBox.SelectedIndex == -1 ? 0 : insertComboBox.SelectedIndex;
 
+
+
+            //-- INSERT DATA SECTION --
             // Clear and populate the Insert ComboBox
             insertComboBox.Items.Clear();
             insertComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
@@ -161,6 +165,11 @@ namespace RegistrySimulator
             // Preserve selected index or default to 0 if not selected
             int movLComboBoxSelectedIndex = movLComboBox.SelectedIndex == -1 ? 0 : movLComboBox.SelectedIndex;
 
+
+
+            //-- EDITING DATA SECTION --
+
+            //- tab 1 (MOV)-
             // Clear and populate the MovL ComboBox
             movLComboBox.Items.Clear();
             movLComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
@@ -191,6 +200,8 @@ namespace RegistrySimulator
             // Preserve selected index or default to 0 if not selected
             int xchgLComboBoxSelectedIndex = xchgLComboBox.SelectedIndex == -1 ? 0 : xchgLComboBox.SelectedIndex;
 
+
+            //- tab 2 (XCHG)-
             // Clear and populate the xchgL ComboBox
             xchgLComboBox.Items.Clear();
             xchgLComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
@@ -219,6 +230,30 @@ namespace RegistrySimulator
             xchgRComboBox.SelectedIndex = xchgRComboBoxSelectedIndex;
 
 
+            //- tab 3 (MOV R->R)-
+            // Preserve selected index or default to 0 if not selected
+            int movRamLComboBoxSelectedIndex = movRamLComboBox.SelectedIndex == -1 ? 0 : movRamLComboBox.SelectedIndex;
+
+            // Clear and populate the movRamL ComboBox
+            movRamLComboBox.Items.Clear();
+            movRamLComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+            movRamLComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+            movRamLComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+            movRamLComboBox.Items.Add($"Offset ({RegisterSimulator.Of.ToString("X")})");
+            movRamLComboBox.SelectedIndex = movRamLComboBoxSelectedIndex;
+
+            // Preserve selected index or default to 0 if not selected
+            int movRamRComboBoxSelectedIndex =movRamRComboBox.SelectedIndex == -1 ? 0 :movRamRComboBox.SelectedIndex;
+
+            // Clear and populate the movRamL ComboBox
+            movRamRComboBox.Items.Clear();
+            movRamRComboBox.Items.Add("bazowe");
+            movRamRComboBox.Items.Add("indeksowe");
+            movRamRComboBox.Items.Add("indeks...-baz...");
+            movRamRComboBox.SelectedIndex = movRamRComboBoxSelectedIndex;
+
+            //TextBlock
+            movRamTextBlock.Text = "Brak";
         }
 
     }
