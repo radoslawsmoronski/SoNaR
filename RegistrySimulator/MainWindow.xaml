@@ -12,9 +12,12 @@
         Title="SOnaR - Symulator Operacji na Rejestrach">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350"/> <!-- including and editing column  -->
-            <ColumnDefinition Width="20"/> <!-- space column -->
-            <ColumnDefinition Width="350"/> <!-- data view column -->
+            <ColumnDefinition Width="350"/>
+            <!-- including and editing column  -->
+            <ColumnDefinition Width="20"/>
+            <!-- space column -->
+            <ColumnDefinition Width="350"/>
+            <!-- data view column -->
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -47,15 +50,15 @@
 
         <!--<TabControl Grid.Row="0" Grid.Column="0">
             <TabItem Header="AX, BX, CX, DX">-->
-                <Grid Background="#FFE5E5E5" Grid.Row="0" Grid.Column="0">
-                    <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych" TextAlignment="Center" />
-                    <TextBox x:Name="insertTextBox" Margin="75,30,195,62" Width="80" Height="25"/>
-                    <ComboBox x:Name="insertComboBox"  Margin="170,30,50,62" Width="80" Height="25" SelectedIndex="0"/>
-                    <Button Content="Wprowadź" Margin="75,107,75,58" Width="200" Height="25" Click="InsertClick"/>
-                    <Button Content="Losowane dane" Margin="40,140,40,24" Width="200" Height="25" Click="RandomClick"/>
-                    <Image x:Name="insrtArrowImage" Source="right-arrow.png" Margin="165,69,165,101" Width="20" Height="20"/>
-                </Grid>
-            <!--</TabItem>
+        <Grid Background="#FFE5E5E5" Grid.Row="0" Grid.Column="0">
+            <TextBlock Grid.Row="1" Margin="10,10,10,94" Text="Wprowadzanie danych" TextAlignment="Center" />
+            <TextBox x:Name="insertTextBox" Margin="75,30,195,62" Width="80" Height="25"/>
+            <ComboBox x:Name="insertComboBox"  Margin="170,30,50,62" Width="80" Height="25" SelectedIndex="0"/>
+            <Button Content="Wprowadź" Margin="75,107,75,58" Width="200" Height="25" Click="InsertClick"/>
+            <Button Content="Losowane dane" Margin="40,140,40,24" Width="200" Height="25" Click="RandomClick"/>
+            <Image x:Name="insrtArrowImage" Source="right-arrow.png" Margin="165,69,165,101" Width="20" Height="20"/>
+        </Grid>
+        <!--</TabItem>
         </TabControl>-->
 
         <TabControl Grid.Row="2">
@@ -79,17 +82,23 @@
             </TabItem>
             <TabItem Header="MOV R->R">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock Margin="10,10,10,128" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" />
-                    <ComboBox x:Name="movRamLComboBox" Margin="26,65,238,72" Width="80" Height="25" SelectedIndex="0"/>
-                    <ComboBox x:Name="movRamRComboBox" Margin="117,65,147,72" Width="80" Height="25" SelectedIndex="0"/>
-                    <Button Content="Wykonaj MOV R->R" Margin="40,88,40,24" Width="200" Height="25" Click="MovClick"/>
-                    <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="212,68,112,74" Width="20" Height="20" RenderTransformOrigin="0.53,0.563"/>
-                    <TextBlock Margin="37,44,249,96" Text="Rejestr" TextAlignment="Center" ></TextBlock>
-                    <TextBlock Margin="112,44,144,97" Text="Adresowanie" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" ></TextBlock>
-                    <TextBlock Margin="236,44,20,97" Text="Adres pamięci" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" ></TextBlock>
-                    <Border BorderBrush="Black" BorderThickness="0.5" Margin="243,65,26,72">
-                        <TextBlock Text="brak" TextAlignment="Center" Margin="0,3,0,0"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="297*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10,5,10,133" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" Grid.ColumnSpan="2" />
+                    <ComboBox x:Name="movRamLComboBox" Margin="26,50,238,87" Width="80" Height="25" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="movRamLClick"/>
+                    <ComboBox x:Name="movRamRComboBox" Margin="70,51,147,86" Width="80" Height="25" SelectedIndex="0" Grid.Column="1"/>
+                    <Button Content="Wykonaj MOV R->R" Margin="25,127,72,10" Width="200" Height="25" Click="MovClick" Grid.Column="1"/>
+                    <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="165,74,112,68" Width="20" Height="20" RenderTransformOrigin="0.53,0.563" Grid.Column="1"/>
+                    <TextBlock Margin="26,30,239,110" Text="Rejestr bazowy" TextAlignment="Center" Grid.ColumnSpan="2" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Margin="70,30,147,111" Text="Rejestr indeksowy" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" Grid.Column="1" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Margin="205,57,0,0" Text="Adres pamięci" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" Grid.Column="1" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" ></TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="0.5" Margin="196,72,26,65" Grid.Column="1">
+                        <TextBlock x:Name="movRamTextBlock" Text="brak" TextAlignment="Center" Margin="0,3,0,0"/>
                     </Border>
+                    <ComboBox x:Name="movRamBComboBox" Margin="26,93,147,44" Height="25" SelectedIndex="0" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="26,78,0,0" Text="Rodzaj adresowania" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="171" />
 
                 </Grid>
             </TabItem>

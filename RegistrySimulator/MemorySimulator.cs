@@ -10,29 +10,35 @@ namespace RegistrySimulator
     public class MemorySimulator
     {
         // Dictionary to store memory values.
-        private Dictionary<string, int> memory = new Dictionary<string, int>();
+        static private Dictionary<string, int> memory = new Dictionary<string, int>();
 
         // Sets the value at the specified memory address.
-        public void SetValue(string address, int value)
+        static public void SetValue(string address, int value)
         {
             memory[address] = value;
         }
 
         //Gets the value stored at the specified memory address.
-        public int GetValue(string address)
+        static public int GetValue(string address)
         {
             return memory.ContainsKey(address) ? memory[address] : 0; 
         }
 
-        //new thing to do
-        public int getAddressByType(int type, int value)
+        //not working \/
+
+        static public string getAddressByType(int type, string baseRegister, string indexRegister)
         {
-            switch(type)
+            switch (type)
             {
-                case 1: return value+RegisterSimulator.Of;
-                case 2: return value;
+                case 1: return (RegisterSimulator.GetRegistryValueFromString(baseRegister) +
+                        RegisterSimulator.Of).ToString("X");
+                case 2: return (RegisterSimulator.GetRegistryValueFromString(indexRegister) +
+                        RegisterSimulator.Of).ToString("X");
+                case 3: return (RegisterSimulator.GetRegistryValueFromString(baseRegister) + 
+                        RegisterSimulator.GetRegistryValueFromString(indexRegister) +
+                        RegisterSimulator.Of).ToString("X");
+                default: return null;
             }
-            return 1;
         }
     }
 }

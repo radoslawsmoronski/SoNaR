@@ -15,14 +15,15 @@ namespace RegistrySimulator
     public static class RegisterSimulator
     {
         // Define registers AX, BX, CX, DX
-        public static int AX { get; set; }
-        public static int BX { get; set; }
-        public static int CX { get; set; }
-        public static int DX { get; set; }
-        public static int BP { get; set; }
-        public static int DI { get; set; }
-        public static int SI { get; set; }
-        public static int Of { get; set; }
+        public static int AX { get; set; } = 0;
+        public static int BX { get; set; } = 0;
+        public static int CX { get; set; } = 0;
+        public static int DX { get; set; } = 0;
+        public static int BP { get; set; } = 0;
+        public static int DI { get; set; } = 0;
+        public static int SI { get; set; } = 0;
+        public static int Of { get; set; } = 0;
+
 
         // Method to set registry value based on register name and value
         public static bool SetRegistry(string registerName, object value)
