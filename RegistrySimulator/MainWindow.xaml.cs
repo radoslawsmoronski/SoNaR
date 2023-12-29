@@ -131,28 +131,31 @@ namespace RegistrySimulator
             }
         }
 
-        //to comment \/
-        private void movRamLClick(object sender, RoutedEventArgs e)
+        private void MovRamSelectionChanged(object sender, RoutedEventArgs e)
         {
-            refreshMemoryAddress();
+            // Handle the movRamCombobox changed selection
+
+            if (isAddingValuesToComboBoxes) // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
+                refreshMemoryAddress();
         }
 
         private void refreshMemoryAddress()
         {
-            string baseRegister = movRamLComboBox.Text;
-            string indexRegister = movRamRComboBox.Text;
+            string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2);
+            string indexRegister = movRamRComboBox.SelectedItem.ToString().Substring(0, 2);
             int addressingType = movRamBComboBox.SelectedIndex;
 
             string memoryAddress = MemorySimulator.getAddressByType(addressingType, baseRegister, indexRegister);
 
-            MessageBox.Show(memoryAddress);
             movRamTextBlock.Text = memoryAddress;
         }
 
-        //to comment /\
+        private bool isAddingValuesToComboBoxes = false; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
 
         private void refreshValues()
         {
+            isAddingValuesToComboBoxes = false; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
+
             //-- DISPLAY SECTION --
             // Refresh the displayed values in the window
             axTextBlock.Text = "AX: " + RegisterSimulator.AX.ToString("X");
@@ -280,8 +283,12 @@ namespace RegistrySimulator
             movRamBComboBox.Items.Add("indeksowo-bazowe");
             movRamBComboBox.SelectedIndex = movRamBComboBoxSelectedIndex;
 
+
             //TextBlock
             //movRamTextBlock.Text = "Brak";
+
+            refreshMemoryAddress();
+            isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
         }
 
     }

@@ -24,20 +24,28 @@ namespace RegistrySimulator
             return memory.ContainsKey(address) ? memory[address] : 0; 
         }
 
-        //not working \/
 
         static public string getAddressByType(int type, string baseRegister, string indexRegister)
         {
             switch (type)
             {
-                case 1: return (RegisterSimulator.GetRegistryValueFromString(baseRegister) +
-                        RegisterSimulator.Of).ToString("X");
-                case 2: return (RegisterSimulator.GetRegistryValueFromString(indexRegister) +
-                        RegisterSimulator.Of).ToString("X");
-                case 3: return (RegisterSimulator.GetRegistryValueFromString(baseRegister) + 
-                        RegisterSimulator.GetRegistryValueFromString(indexRegister) +
-                        RegisterSimulator.Of).ToString("X");
-                default: return null;
+                // Calculate the address by Base Calculation
+                case 0:
+                    return (RegisterSimulator.GetRegistryValueFromString(baseRegister) +
+                            RegisterSimulator.Of).ToString("X");
+
+                // Calculate the address by Index Calculation
+                case 1:
+                    return (RegisterSimulator.GetRegistryValueFromString(indexRegister) +
+                            RegisterSimulator.Of).ToString("X");
+
+                // Calculate the address by Base-Index Calculation
+                case 2:
+                    return (RegisterSimulator.GetRegistryValueFromString(baseRegister) +
+                            RegisterSimulator.GetRegistryValueFromString(indexRegister) +
+                            RegisterSimulator.Of).ToString("X");
+                default:
+                    return null;
             }
         }
     }
