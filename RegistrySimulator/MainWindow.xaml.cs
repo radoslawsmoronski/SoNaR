@@ -139,6 +139,22 @@ namespace RegistrySimulator
                 refreshMemoryAddress();
         }
 
+        private void MovRamClick(object sender, RoutedEventArgs e)
+        {
+            string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2);
+            string indexRegister = movRamRComboBox.SelectedItem.ToString().Substring(0, 2);
+            int addressingType = movRamBComboBox.SelectedIndex;
+
+            string memoryAddress = MemorySimulator.getAddressByType(addressingType, baseRegister, indexRegister);
+
+            MemorySimulator.SetValue(memoryAddress, 0); //<- New work to do
+
+            MessageBox.Show($"Na komórce w pamięci o adresie {memoryAddress} " +
+                $" wykonano operacje MOV z rejestru AX(0);");
+
+            refreshValues();
+        }
+
         private void refreshMemoryAddress()
         {
             string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2);
@@ -151,6 +167,12 @@ namespace RegistrySimulator
         }
 
         private bool isAddingValuesToComboBoxes = false; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
+
+        public class RamMemoryView
+        {
+            public string Column1 { get; set; }
+            public int Column2 { get; set; }
+        };
 
         private void refreshValues()
         {
@@ -288,7 +310,25 @@ namespace RegistrySimulator
             //movRamTextBlock.Text = "Brak";
 
             refreshMemoryAddress();
-            isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
+
+            Dictionary<string, int> memory = MemorySimulator.GetMemoryValues();
+
+
+            ramListView.Items.Clear();
+            foreach (KeyValuePair<string, int> entry in memory)
+            {
+                string key = entry.Key;
+                int value = entry.Value;
+
+                RamMemoryView ramValue = new RamMemoryView { Column1 = entry.Key, Column2 = entry.Value };
+
+                ramListView.Items.Add(ramValue);
+            }
+
+
+
+
+    isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
         }
 
     }

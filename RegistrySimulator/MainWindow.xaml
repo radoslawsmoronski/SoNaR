@@ -42,7 +42,14 @@
         </Grid>
 
         <Grid Grid.Column="2" Grid.Row="2">
-            <ListBox d:ItemsSource="{d:SampleData ItemCount=20}" Margin="0,23,0,0"/>
+            <ListView x:Name="ramListView" Margin="0,23,0,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Adres RAM" Width="100" DisplayMemberBinding="{Binding Column1}" />
+                        <GridViewColumn Header="Wartość" Width="100" DisplayMemberBinding="{Binding Column2}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
             <TextBlock Text="Dane w pamięi operacynej"  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="350"/>
         </Grid>
 
@@ -89,7 +96,7 @@
                     <TextBlock Margin="10,5,10,133" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" Grid.ColumnSpan="2" />
                     <ComboBox x:Name="movRamLComboBox" Margin="26,50,238,87" Width="80" Height="25" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="MovRamSelectionChanged"/>
                     <ComboBox x:Name="movRamRComboBox" Margin="70,51,147,86" Width="80" Height="25" SelectedIndex="0" Grid.Column="1" SelectionChanged="MovRamSelectionChanged"/>
-                    <Button Content="Wykonaj MOV R->R" Margin="25,127,72,10" Width="200" Height="25" Click="MovClick" Grid.Column="1"/>
+                    <Button Content="Wykonaj MOV R->R" Margin="25,127,72,10" Width="200" Height="25" Grid.Column="1" Click="MovRamClick"/>
                     <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="165,74,112,68" Width="20" Height="20" RenderTransformOrigin="0.53,0.563" Grid.Column="1"/>
                     <TextBlock Margin="26,30,239,110" Text="Rejestr bazowy" TextAlignment="Center" Grid.ColumnSpan="2" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                     <TextBlock Margin="70,30,147,111" Text="Rejestr indeksowy" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" Grid.Column="1" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>

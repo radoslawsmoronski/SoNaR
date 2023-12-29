@@ -15,13 +15,26 @@ namespace RegistrySimulator
         // Sets the value at the specified memory address.
         static public void SetValue(string address, int value)
         {
-            memory[address] = value;
+            if (!memory.ContainsKey(address))
+            {
+                memory.Add(address, value);
+            }
+            else
+            {
+                memory[address] = value;
+            }
+
         }
 
         //Gets the value stored at the specified memory address.
         static public int GetValue(string address)
         {
             return memory.ContainsKey(address) ? memory[address] : 0; 
+        }
+
+        static public Dictionary<string, int> GetMemoryValues()
+        {
+            return memory;
         }
 
 
