@@ -97,8 +97,8 @@ namespace RegistrySimulator
         private void MovClick(object sender, RoutedEventArgs e)
         {
             // Handle the Mov button click
-            string firstRegisterInsertName = movLComboBox.SelectedItem.ToString().Substring(0, 2);
-            string secondRegisterInserName = movRComboBox.SelectedItem.ToString().Substring(0, 2);
+            string firstRegisterInsertName = movULComboBox.SelectedItem.ToString().Substring(0, 2);
+            string secondRegisterInserName = movURComboBox.SelectedItem.ToString().Substring(0, 2);
 
             int firstRegisterValue = RegisterSimulator.GetRegistryValueFromString(firstRegisterInsertName);
             int secondRegisterValue = RegisterSimulator.GetRegistryValueFromString(secondRegisterInserName);
@@ -203,14 +203,10 @@ namespace RegistrySimulator
             //-- EDITING DATA SECTION --
 
             //- tab 1 (MOV)-
-            refreshAllRegistryValuesComboBox(movLComboBox);
-            refreshAllRegistryValuesComboBox(movRComboBox);
+            refreshAllRegistryValuesComboBox(movULComboBox);
+            refreshAllRegistryValuesComboBox(movURComboBox);
 
-            //- tab 2 (XCHG)-
-            refreshAllRegistryValuesComboBox(xchgLComboBox);
-            refreshAllRegistryValuesComboBox(xchgRComboBox);
-
-            //- tab 3 (MOV R->R)-
+            //- tab 2 (MOV R->R)-
             refreshAllRegistryValuesComboBox(movRamUComboBox);
 
             // Preserve selected index or default to 0 if not selected
@@ -257,6 +253,10 @@ namespace RegistrySimulator
 
                 ramListView.Items.Add(ramValue);
             }
+
+            //- tab 3 (XCHG)-
+            refreshAllRegistryValuesComboBox(xchgLComboBox);
+            refreshAllRegistryValuesComboBox(xchgRComboBox);
 
 
             isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
