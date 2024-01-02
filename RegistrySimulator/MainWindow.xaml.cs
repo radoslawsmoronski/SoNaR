@@ -35,7 +35,7 @@ namespace RegistrySimulator
         private void InsertClick(object sender, RoutedEventArgs e)
         {
             // Handle the Insert button click
-            string registerInsertName = insertComboBox.SelectedItem.ToString().Substring(0, 2);
+            string registerInsertName = insertComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
             string registerValue = insertTextBox.Text.Replace(" ", "");
 
             if (registerValue == "" || registerValue == null)
@@ -97,9 +97,9 @@ namespace RegistrySimulator
 
         private void MovUClick(object sender, RoutedEventArgs e)
         {
-            // Handle the Mov button click
-            string firstRegisterInsertName = movULComboBox.SelectedItem.ToString().Substring(0, 2);
-            string secondRegisterInserName = movURComboBox.SelectedItem.ToString().Substring(0, 2);
+            // Handle the Mov upper button click
+            string firstRegisterInsertName = movULComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string secondRegisterInserName = movURComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
 
             int firstRegisterValue = RegisterSimulator.GetRegistryValueFromString(firstRegisterInsertName);
             int secondRegisterValue = RegisterSimulator.GetRegistryValueFromString(secondRegisterInserName);
@@ -115,7 +115,7 @@ namespace RegistrySimulator
 
         private void MovBClick(object sender, RoutedEventArgs e)
         {
-            // Handle the MovB button click
+            // Handle the Mov bottom button click
 
             if (!movBLComboBox.IsEnabled)
             {
@@ -127,7 +127,7 @@ namespace RegistrySimulator
                 int index = ramAddress.IndexOf(' ');
                 ramAddress = index != -1 ? ramAddress.Substring(0, index) : ramAddress;
 
-            string registerName = movBRComboBox.SelectedItem.ToString().Substring(0, 2);
+            string registerName = movBRComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
 
             int ramValue = MemorySimulator.GetValue(ramAddress);
             int registerValue = RegisterSimulator.GetRegistryValueFromString(registerName);
@@ -151,9 +151,10 @@ namespace RegistrySimulator
 
         private void MovRamClick(object sender, RoutedEventArgs e)
         {
-            string registerToMov = movRamUComboBox.SelectedItem.ToString().Substring(0, 2);
-            string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2);
-            string indexRegister = movRamRComboBox.SelectedItem.ToString().Substring(0, 2);
+            // Handle the MOV 2 button click
+            string registerToMov = movRamUComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string indexRegister = movRamRComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
             int addressingType = movRamBComboBox.SelectedIndex;
 
             int registerToMovValue = RegisterSimulator.GetRegistryValueFromString(registerToMov);
@@ -167,22 +168,11 @@ namespace RegistrySimulator
             refreshValues();
         }
 
-        private void refreshMemoryAddress()
-        {
-            string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2);
-            string indexRegister = movRamRComboBox.SelectedItem.ToString().Substring(0, 2);
-            int addressingType = movRamBComboBox.SelectedIndex;
-
-            string memoryAddress = MemorySimulator.getAddressByType(addressingType, baseRegister, indexRegister);
-
-            movRamTextBlock.Text = memoryAddress;
-        }
-
         private void XchgClick(object sender, RoutedEventArgs e)
         {
-            // Handle the Xchg button click
-            string firstRegisterInsertName = xchgLComboBox.SelectedItem.ToString().Substring(0, 2);
-            string secondRegisterInserName = xchgRComboBox.SelectedItem.ToString().Substring(0, 2);
+            // Handle the XCHG button click
+            string firstRegisterInsertName = xchgLComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string secondRegisterInserName = xchgRComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
 
             int firstRegisterValue = RegisterSimulator.GetRegistryValueFromString(firstRegisterInsertName);
             int secondRegisterValue = RegisterSimulator.GetRegistryValueFromString(secondRegisterInserName);
@@ -208,44 +198,39 @@ namespace RegistrySimulator
         private void refreshValues()
         {
             isAddingValuesToComboBoxes = false; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
-
-            //-- DISPLAY SECTION --
-            // Refresh the displayed values in the window
-            axTextBlock.Text = "AX: " + RegisterSimulator.AX.ToString("X");
-            bxTextBlock.Text = "BX: " + RegisterSimulator.BX.ToString("X");
-            cxTextBlock.Text = "CX: " + RegisterSimulator.CX.ToString("X");
-            dxTextBlock.Text = "DX: " + RegisterSimulator.DX.ToString("X");
-            bpTextBlock.Text = "BP: " + RegisterSimulator.BP.ToString("X");
-            diTextBlock.Text = "DI: " + RegisterSimulator.DI.ToString("X");
-            siTextBlock.Text = "SI: " + RegisterSimulator.SI.ToString("X");
-            osTextBlock.Text = "Offset: " + RegisterSimulator.Of.ToString("X");
-
-            // Preserve selected index or default to 0 if not selected
-            int insertComboBoxSelectedIndex = insertComboBox.SelectedIndex == -1 ? 0 : insertComboBox.SelectedIndex;
-
-
-
-            //-- INSERT DATA SECTION --
-            refreshAllRegistryValuesComboBox(insertComboBox);
-
-
-            //-- EDITING DATA SECTION --
-
-            //- tab 1 (MOV)-
-            // section 1
-            refreshAllRegistryValuesComboBox(movULComboBox);
-            refreshAllRegistryValuesComboBox(movURComboBox);
-            //section 2
-            // Preserve selected index or default to 0 if not selected
-            int movBLComboBoxSelectedIndex = movBLComboBox.SelectedIndex == -1 ? 0 : movBLComboBox.SelectedIndex;
-
-            // Clear and populate the movRamL ComboBox
-            movBLComboBox.Items.Clear();
-
             Dictionary<string, int> memory = MemorySimulator.GetMemoryValues();
 
-            if (memory.Count != 0)
-            {
+
+
+
+
+            // ###############################
+            // ### SECTION 1: DISPLAYING   ###
+            // ###############################
+
+
+
+                // ------------ SECTION 1: REGISTERS TEXTBLOCKS ------------
+
+                // Refresh the displayed values in the window
+                axTextBlock.Text = "AX: " + RegisterSimulator.AX.ToString("X");
+                bxTextBlock.Text = "BX: " + RegisterSimulator.BX.ToString("X");
+                cxTextBlock.Text = "CX: " + RegisterSimulator.CX.ToString("X");
+                dxTextBlock.Text = "DX: " + RegisterSimulator.DX.ToString("X");
+                bpTextBlock.Text = "BP: " + RegisterSimulator.BP.ToString("X");
+                diTextBlock.Text = "DI: " + RegisterSimulator.DI.ToString("X");
+                siTextBlock.Text = "SI: " + RegisterSimulator.SI.ToString("X");
+                osTextBlock.Text = "Offset: " + RegisterSimulator.Of.ToString("X");
+
+                // Preserve selected index or default to 0 if not selected
+                int insertComboBoxSelectedIndex = insertComboBox.SelectedIndex == -1 ? 0 : insertComboBox.SelectedIndex;
+
+
+                // ------------ SECTION 1: RAM LISTVIEW ------------
+
+                refreshMemoryAddress();
+
+                ramListView.Items.Clear();
                 foreach (KeyValuePair<string, int> entry in memory)
                 {
                     string key = entry.Key;
@@ -253,70 +238,113 @@ namespace RegistrySimulator
 
                     RamMemoryView ramValue = new RamMemoryView { Column1 = entry.Key, Column2 = entry.Value.ToString("X") };
 
-                    movBLComboBox.Items.Add($"{entry.Key} ({entry.Value.ToString("X")})");
+                    ramListView.Items.Add(ramValue);
                 }
-                movBLComboBox.IsEnabled = true;
-                movBLComboBox.SelectedIndex = movBLComboBoxSelectedIndex;
-            }
-            else
-            {
-                movBLComboBox.IsEnabled = false;
-            }
-
-            refreshAllRegistryValuesComboBox(movBRComboBox);
-            //- tab 2 (MOV R->R)-
 
 
-            refreshAllRegistryValuesComboBox(movRamUComboBox);
-
-            // Preserve selected index or default to 0 if not selected
-            int movRamLComboBoxSelectedIndex = movRamLComboBox.SelectedIndex == -1 ? 0 : movRamLComboBox.SelectedIndex;
-
-            // Clear and populate the movRamL ComboBox
-            movRamLComboBox.Items.Clear();
-            movRamLComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
-            movRamLComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
-            movRamLComboBox.SelectedIndex = movRamLComboBoxSelectedIndex;
-
-            // Preserve selected index or default to 0 if not selected
-            int movRamRComboBoxSelectedIndex = movRamRComboBox.SelectedIndex == -1 ? 0 :movRamRComboBox.SelectedIndex;
-
-            // Clear and populate the movRamL ComboBox
-            movRamRComboBox.Items.Clear();
-            movRamRComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
-            movRamRComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
-            movRamRComboBox.SelectedIndex = movRamRComboBoxSelectedIndex;
 
 
-            // Preserve selected index or default to 0 if not selected
-            int movRamBComboBoxSelectedIndex = movRamBComboBox.SelectedIndex == -1 ? 0 : movRamBComboBox.SelectedIndex;
 
-            //Addressing index type combobox
-            movRamBComboBox.Items.Clear();
-            movRamBComboBox.Items.Add("bazowe");
-            movRamBComboBox.Items.Add("indeksowe");
-            movRamBComboBox.Items.Add("indeksowo-bazowe");
-            movRamBComboBox.SelectedIndex = movRamBComboBoxSelectedIndex;
+            // #######################################
+            // ### SECTION 2: INSERT AND EDITING   ###
+            // #######################################
 
-            refreshMemoryAddress();
 
-            ramListView.Items.Clear();
-            foreach (KeyValuePair<string, int> entry in memory)
-            {
-                string key = entry.Key;
-                int value = entry.Value;
 
-                RamMemoryView ramValue = new RamMemoryView { Column1 = entry.Key, Column2 = entry.Value.ToString("X") };
+                // ------------ SECTION 2: INSERT DATA ------------
 
-                ramListView.Items.Add(ramValue);
-            }
+                refreshAllRegistryValuesComboBox(insertComboBox);
 
-            //- tab 3 (XCHG)-
-            refreshAllRegistryValuesComboBox(xchgLComboBox);
-            refreshAllRegistryValuesComboBox(xchgRComboBox);
+
+
+                //// ------------ SECTION 2: EDITING DATA ------------
+
+
+                    //// <------- SECTION 2, EDITING DATA: TAB 1 ------->
+            
+                    refreshAllRegistryValuesComboBox(movULComboBox);
+                    refreshAllRegistryValuesComboBox(movURComboBox);
+
+                    // Preserve selected index or default to 0 if not selected
+                    int movBLComboBoxSelectedIndex = movBLComboBox.SelectedIndex == -1 ? 0 : movBLComboBox.SelectedIndex;
+
+                    // Clear and populate the movRamL ComboBox
+                    movBLComboBox.Items.Clear();
+
+                    if (memory.Count != 0)
+                    {
+                        foreach (KeyValuePair<string, int> entry in memory)
+                        {
+                            string key = entry.Key;
+                            int value = entry.Value;
+
+                            RamMemoryView ramValue = new RamMemoryView { Column1 = entry.Key, Column2 = entry.Value.ToString("X") };
+
+                            movBLComboBox.Items.Add($"{entry.Key} ({entry.Value.ToString("X")})");
+                        }
+                        movBLComboBox.IsEnabled = true;
+                        movBLComboBox.SelectedIndex = movBLComboBoxSelectedIndex;
+                    }
+                    else
+                    {
+                        movBLComboBox.IsEnabled = false;
+                    }
+
+                    refreshAllRegistryValuesComboBox(movBRComboBox);
+
+
+                    //// <------- SECTION 2, EDITING DATA: TAB 2 ------->
+
+                    refreshAllRegistryValuesComboBox(movRamUComboBox);
+
+                    // Preserve selected index or default to 0 if not selected
+                    int movRamLComboBoxSelectedIndex = movRamLComboBox.SelectedIndex == -1 ? 0 : movRamLComboBox.SelectedIndex;
+
+                    // Clear and populate the movRamL ComboBox
+                    movRamLComboBox.Items.Clear();
+                    movRamLComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+                    movRamLComboBox.Items.Add($"BP ({RegisterSimulator.BP.ToString("X")})");
+                    movRamLComboBox.SelectedIndex = movRamLComboBoxSelectedIndex;
+
+                    // Preserve selected index or default to 0 if not selected
+                    int movRamRComboBoxSelectedIndex = movRamRComboBox.SelectedIndex == -1 ? 0 :movRamRComboBox.SelectedIndex;
+
+                    // Clear and populate the movRamL ComboBox
+                    movRamRComboBox.Items.Clear();
+                    movRamRComboBox.Items.Add($"SI ({RegisterSimulator.SI.ToString("X")})");
+                    movRamRComboBox.Items.Add($"DI ({RegisterSimulator.DI.ToString("X")})");
+                    movRamRComboBox.SelectedIndex = movRamRComboBoxSelectedIndex;
+
+
+                    // Preserve selected index or default to 0 if not selected
+                    int movRamBComboBoxSelectedIndex = movRamBComboBox.SelectedIndex == -1 ? 0 : movRamBComboBox.SelectedIndex;
+
+                    //Addressing index type combobox
+                    movRamBComboBox.Items.Clear();
+                    movRamBComboBox.Items.Add("bazowe");
+                    movRamBComboBox.Items.Add("indeksowe");
+                    movRamBComboBox.Items.Add("indeksowo-bazowe");
+                    movRamBComboBox.SelectedIndex = movRamBComboBoxSelectedIndex;
+
+
+                    //// <------- SECTION 2, EDITING DATA: TAB 3 ------->
+
+                    refreshAllRegistryValuesComboBox(xchgLComboBox);
+                    refreshAllRegistryValuesComboBox(xchgRComboBox);
 
 
             isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
+        }
+
+        private void refreshMemoryAddress()
+        {
+            string baseRegister = movRamLComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string indexRegister = movRamRComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            int addressingType = movRamBComboBox.SelectedIndex;
+
+            string memoryAddress = MemorySimulator.getAddressByType(addressingType, baseRegister, indexRegister);
+
+            movRamTextBlock.Text = memoryAddress;
         }
 
         private void refreshAllRegistryValuesComboBox(ComboBox combo) //Support method to refresh ComboBoxes
