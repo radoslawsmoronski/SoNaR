@@ -75,14 +75,14 @@
                         <TextBlock Margin="10,10,10,75" Text="Operacja MOV z rejestrów do rejestrów" TextAlignment="Center" />
                         <ComboBox x:Name="movULComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
                         <ComboBox x:Name="movURComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
-                        <Button Content="Wykonaj MOV" Margin="62,65,62,15" Width="200" Height="25" Click="MovClick"/>
+                        <Button x:Name="movUButton" Content="Wykonaj MOV" Margin="62,65,62,15" Width="200" Height="25" Click="MovUClick"/>
                         <Image x:Name="movArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
                     </Grid>
                     <Grid Background="#FFF8F8F8" Height="115px" Margin="10,137,10,10">
                         <TextBlock Margin="10,10,10,75" Text="Operacja MOV z pamięci operacyjnej do rejestrów" TextAlignment="Center" />
-                        <ComboBox x:Name="movULComboBox1" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
-                        <ComboBox x:Name="movURComboBox1" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
-                        <Button Content="Wykonaj MOV" Margin="62,65,62,15" Width="200" Height="25" Click="MovClick"/>
+                        <ComboBox x:Name="movBLComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
+                        <ComboBox x:Name="movBRComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
+                        <Button x:Name="movBButton" Content="Wykonaj MOV" Margin="62,65,62,15" Width="200" Height="25" Click="MovBClick"/>
                         <Image x:Name="movArrowImage1"  Source="/right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
                     </Grid>
                 </Grid>
