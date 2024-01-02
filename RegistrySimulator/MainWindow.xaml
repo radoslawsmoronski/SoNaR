@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:RegistrySimulator"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Height="500" Width="780"
+        Height="600" Width="780"
         ResizeMode="NoResize"
         Title="SOnaR - Symulator Operacji na Rejestrach">
     <Grid Margin="20">
@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="190" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="190" />
+            <RowDefinition Height="290" />
         </Grid.RowDefinitions>
 
 
@@ -89,23 +89,27 @@
             </TabItem>
             <TabItem Header="MOV R->R">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="47*"/>
-                        <ColumnDefinition Width="297*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Margin="10,5,10,133" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" Grid.ColumnSpan="2" />
-                    <ComboBox x:Name="movRamLComboBox" Margin="26,50,238,87" Width="80" Height="25" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="MovRamSelectionChanged"/>
-                    <ComboBox x:Name="movRamRComboBox" Margin="70,51,147,86" Width="80" Height="25" SelectedIndex="0" Grid.Column="1" SelectionChanged="MovRamSelectionChanged"/>
-                    <Button Content="Wykonaj MOV R->R" Margin="25,127,72,10" Width="200" Height="25" Grid.Column="1" Click="MovRamClick"/>
-                    <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="165,74,112,68" Width="20" Height="20" RenderTransformOrigin="0.53,0.563" Grid.Column="1"/>
-                    <TextBlock Margin="26,30,239,110" Text="Rejestr bazowy" TextAlignment="Center" Grid.ColumnSpan="2" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
-                    <TextBlock Margin="70,30,147,111" Text="Rejestr indeksowy" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" Grid.Column="1" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
-                    <TextBlock Margin="205,57,0,0" Text="Adres pamięci" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" Grid.Column="1" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" ></TextBlock>
-                    <Border BorderBrush="Black" BorderThickness="0.5" Margin="196,72,26,65" Grid.Column="1">
-                        <TextBlock x:Name="movRamTextBlock" Text="brak" TextAlignment="Center" Margin="0,3,0,0"/>
-                    </Border>
-                    <ComboBox x:Name="movRamBComboBox" Margin="26,93,147,44" Height="25" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="MovRamSelectionChanged"/>
-                    <TextBlock Margin="26,78,0,0" Text="Rodzaj adresowania" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="171" />
+                    <TextBlock Margin="10,3,10,239" Text="Operacja MOV z rejestru do pamięci operacyjnej" TextAlignment="Center" Grid.ColumnSpan="2" />
+
+                    <ComboBox x:Name="movRamUComboBox" Margin="69,40,75,197" Width="200" Height="25" SelectedIndex="0" SelectionChanged="MovRamSelectionChanged"/>
+                    <TextBlock Margin="84,23,0,0" Text="Rejestr" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="11" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" ></TextBlock>
+
+                    <Grid Background="#FFF8F8F8" Margin="20,75,20,47">
+                        <TextBlock Margin="0,10,0,0" Text="Ustawienia adresowania" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Top" Width="176" Height="12" />
+                        <ComboBox x:Name="movRamLComboBox" Margin="10,57,214,58" Width="80" Height="25" SelectedIndex="0" SelectionChanged="MovRamSelectionChanged"/>
+                        <ComboBox x:Name="movRamRComboBox" Margin="102,57,122,58" Width="80" Height="25" SelectedIndex="0" SelectionChanged="MovRamSelectionChanged" RenderTransformOrigin="0.507,0.458"/>
+                        <TextBlock Margin="10,36,0,0" Text="Rejestr bazowy" TextAlignment="Center" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" Height="14" Width="80" />
+                        <TextBlock Margin="102,38,0,0" Text="Rejestr indeksowy" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" Height="10" Width="78" />
+                        <TextBlock Margin="228,61,0,0" Text="Adres pamięci" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <ComboBox x:Name="movRamBComboBox" Margin="8,105,122,10" Height="25" SelectedIndex="0" SelectionChanged="MovRamSelectionChanged"/>
+                        <TextBlock Margin="8,88,0,0" Text="Rodzaj adresowania" TextAlignment="Center" RenderTransformOrigin="0.482,1.658" FontSize="9" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="12" />
+                        <Image x:Name="movRamArrowImage"  Source="right-arrow.png" Margin="189,81,95,39" Width="20" Height="20" RenderTransformOrigin="0.53,0.563"/>
+                        <Border BorderBrush="Black" BorderThickness="0.5" Margin="215,78,7,36">
+                            <TextBlock x:Name="movRamTextBlock" Text="brak" TextAlignment="Center" Margin="0,4,0,1"/>
+                        </Border>
+                    </Grid>
+
+                    <Button Content="Wykonaj MOV R->R" Margin="72,227,72,10" Width="200" Height="25" Click="MovRamClick" FontSize="10"/>
 
                 </Grid>
             </TabItem>
