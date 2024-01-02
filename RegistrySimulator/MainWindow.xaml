@@ -42,15 +42,24 @@
         </Grid>
 
         <Grid Grid.Column="2" Grid.Row="2">
-            <ListView x:Name="ramListView" Margin="0,23,0,0">
+            <TextBlock Text="Dane w pamięi operacynej"  TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165"/>
+            <ListView x:Name="ramListView" Margin="0,23,185,0">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Adres RAM" Width="100" DisplayMemberBinding="{Binding Column1}" />
-                        <GridViewColumn Header="Wartość" Width="100" DisplayMemberBinding="{Binding Column2}" />
+                        <GridViewColumn Header="Adres RAM" Width="77" DisplayMemberBinding="{Binding Column1}" />
+                        <GridViewColumn Header="Wartość" Width="77" DisplayMemberBinding="{Binding Column2}" />
                     </GridView>
                 </ListView.View>
             </ListView>
-            <TextBlock Text="Dane w pamięi operacynej"  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="350"/>
+            <TextBlock Text="Stos"  TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="185,0,0,0"/>
+            <ListView x:Name="ramListView_Copy" Margin="185,23,0,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Adres RAM" Width="77" DisplayMemberBinding="{Binding Column1}" />
+                        <GridViewColumn Header="Wartość" Width="77" DisplayMemberBinding="{Binding Column2}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <!-- including and editing column (0) -->
@@ -120,14 +129,48 @@
                         <ComboBox x:Name="xchgULComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
                         <ComboBox x:Name="xchgURComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
                         <Button x:Name="xchgUButton" Content="Wykonaj XCHG" Margin="62,65,62,15" Width="200" Height="25" Click="XchgUClick"/>
-                        <Image x:Name="xchgUArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                        <Image x:Name="xchgUArrowImage"  Source="xchg-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
                     </Grid>
                     <Grid Background="#FFF8F8F8" Height="115px" Margin="10,137,10,10">
                         <TextBlock Margin="10,10,10,75" Text="Operacja XCHG z pamięci operacyjnej do rejestrów" TextAlignment="Center" />
                         <ComboBox x:Name="xchgBLComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
                         <ComboBox x:Name="xchgBRComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
                         <Button x:Name="xchgBButton" Content="Wykonaj XCHG" Margin="62,65,62,15" Width="200" Height="25" Click="XchgBClick"/>
-                        <Image x:Name="xchgBArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                        <Image x:Name="xchgBArrowImage"  Source="xchg-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="PUSH i POP">
+                <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFF8F8F8" Height="115px" Margin="10,10,10,137">
+                        <TextBlock Margin="10,10,10,75" Text="Operacja PUSH na rejestrach" TextAlignment="Center" />
+                        <ComboBox x:Name="pushComboBox" Margin="62,40,88,50" Height="25" SelectedIndex="0"/>
+                        <Button x:Name="pushButton" Content="Wykonaj PUSH" Margin="62,65,62,15" Width="200" Height="25" Click="XchgUClick"/>
+                        <Image x:Name="pushArrowImage"  Source="right-arrow.png" Margin="233,60,71,35" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Grid>
+                    <Grid Background="#FFF8F8F8" Height="115px" Margin="10,137,10,10">
+                        <TextBlock Margin="10,10,10,75" Text="Operacja POP na rejestrach" TextAlignment="Center" />
+                        <ComboBox x:Name="pushComboBox1" Margin="62,40,88,50" Height="25" SelectedIndex="0"/>
+                        <Button x:Name="pushButton1" Content="Wykonaj pop" Margin="62,65,62,15" Width="200" Height="25" Click="XchgUClick"/>
+                        <Image x:Name="pushArrowImage1"  Source="/right-arrow.png" Margin="258,50,46,45" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
                     </Grid>
                 </Grid>
             </TabItem>
