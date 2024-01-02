@@ -76,14 +76,14 @@
                         <ComboBox x:Name="movULComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
                         <ComboBox x:Name="movURComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
                         <Button x:Name="movUButton" Content="Wykonaj MOV" Margin="62,65,62,15" Width="200" Height="25" Click="MovUClick"/>
-                        <Image x:Name="movArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                        <Image x:Name="movUArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
                     </Grid>
                     <Grid Background="#FFF8F8F8" Height="115px" Margin="10,137,10,10">
                         <TextBlock Margin="10,10,10,75" Text="Operacja MOV z pamięci operacyjnej do rejestrów" TextAlignment="Center" />
                         <ComboBox x:Name="movBLComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
                         <ComboBox x:Name="movBRComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
                         <Button x:Name="movBButton" Content="Wykonaj MOV" Margin="62,65,62,15" Width="200" Height="25" Click="MovBClick"/>
-                        <Image x:Name="movArrowImage1"  Source="/right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                        <Image x:Name="movBArrowImage"  Source="/right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -115,11 +115,20 @@
             </TabItem>
             <TabItem Header="XCHG">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock Margin="10,10,10,94" Text="Operacja XCHG" TextAlignment="Center" />
-                    <ComboBox x:Name="xchgLComboBox" Margin="57,45,177,52" Width="80" Height="25" SelectedIndex="0"/>
-                    <ComboBox x:Name="xchgRComboBox" Margin="177,45,57,52" Width="80" Height="25" SelectedIndex="0"/>
-                    <Button Content="Wykonaj XCHG" Margin="40,88,40,24" Width="200" Height="25" Click="XchgClick"/>
-                    <Image x:Name="xchgArrowImage"  Source="xchg-arrow.png" Margin="147,48,147,54" Width="20" Height="20"/>
+                    <Grid Background="#FFF8F8F8" Height="115px" Margin="10,10,10,137">
+                        <TextBlock Margin="10,10,10,75" Text="Operacja XCHG z rejestrów do rejestrów" TextAlignment="Center" />
+                        <ComboBox x:Name="xchgULComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
+                        <ComboBox x:Name="xchgURComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
+                        <Button x:Name="xchgUButton" Content="Wykonaj XCHG" Margin="62,65,62,15" Width="200" Height="25" Click="XchgUClick"/>
+                        <Image x:Name="xchgUArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                    </Grid>
+                    <Grid Background="#FFF8F8F8" Height="115px" Margin="10,137,10,10">
+                        <TextBlock Margin="10,10,10,75" Text="Operacja XCHG z pamięci operacyjnej do rejestrów" TextAlignment="Center" />
+                        <ComboBox x:Name="xchgBLComboBox" Margin="62,35,182,45" Width="80" Height="25" SelectedIndex="0"/>
+                        <ComboBox x:Name="xchgBRComboBox" Margin="182,35,62,45" Width="80" Height="25" SelectedIndex="0" RenderTransformOrigin="0.497,0.553"/>
+                        <Button x:Name="xchgBButton" Content="Wykonaj XCHG" Margin="62,65,62,15" Width="200" Height="25" Click="XchgBClick"/>
+                        <Image x:Name="xchgBArrowImage"  Source="right-arrow.png" Margin="152,38,152,47" Width="20" Height="20" RenderTransformOrigin="0.313,-0.126"/>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

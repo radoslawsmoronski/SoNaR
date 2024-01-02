@@ -168,11 +168,11 @@ namespace RegistrySimulator
             refreshValues();
         }
 
-        private void XchgClick(object sender, RoutedEventArgs e)
+        private void XchgUClick(object sender, RoutedEventArgs e)
         {
             // Handle the XCHG button click
-            string firstRegisterInsertName = xchgLComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
-            string secondRegisterInserName = xchgRComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string firstRegisterInsertName = xchgULComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            string secondRegisterInserName = xchgURComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
 
             int firstRegisterValue = RegisterSimulator.GetRegistryValueFromString(firstRegisterInsertName);
             int secondRegisterValue = RegisterSimulator.GetRegistryValueFromString(secondRegisterInserName);
@@ -186,6 +186,36 @@ namespace RegistrySimulator
                 refreshValues();
             }
         }
+
+        private void XchgBClick(object sender, RoutedEventArgs e)
+        {
+            // Handle the xchg bottom button click
+
+            if (!xchgBLComboBox.IsEnabled)
+            {
+                MessageBox.Show("Nie można wykonać operacji, ponieważ pamięć operacyjna jest pusta, co powoduje brak potrzebnego elementu do operacji MOV.");
+                return;
+            }
+
+            string ramAddress = xchgBLComboBox.SelectedItem.ToString();
+            int index = ramAddress.IndexOf(' ');
+            ramAddress = index != -1 ? ramAddress.Substring(0, index) : ramAddress;
+
+            string registerName = xchgBRComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+
+            int ramValue = MemorySimulator.GetValue(ramAddress);
+            int registerValue = RegisterSimulator.GetRegistryValueFromString(registerName);
+
+            if (RegisterSimulator.SetRegistry(registerName, ramValue))
+            {
+                MemorySimulator.SetValue(ramAddress, registerValue);
+                // Refresh values if setting the registry is successful
+                MessageBox.Show($"Na rejestr {registerName} ({registerValue.ToString("X")})" +
+                    $" oraz komórkę w pamięci operacyjnej o adresie {ramAddress} ({ramValue.ToString("X")}) została wykonana operacja XCHG.");
+                refreshValues();
+            }
+        }
+
 
         private bool isAddingValuesToComboBoxes = false; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
 
@@ -227,8 +257,6 @@ namespace RegistrySimulator
 
 
                 // ------------ SECTION 1: RAM LISTVIEW ------------
-
-                refreshMemoryAddress();
 
                 ramListView.Items.Clear();
                 foreach (KeyValuePair<string, int> entry in memory)
@@ -326,11 +354,40 @@ namespace RegistrySimulator
                     movRamBComboBox.Items.Add("indeksowo-bazowe");
                     movRamBComboBox.SelectedIndex = movRamBComboBoxSelectedIndex;
 
+                    refreshMemoryAddress();
+
 
                     //// <------- SECTION 2, EDITING DATA: TAB 3 ------->
 
-                    refreshAllRegistryValuesComboBox(xchgLComboBox);
-                    refreshAllRegistryValuesComboBox(xchgRComboBox);
+                    refreshAllRegistryValuesComboBox(xchgULComboBox);
+                    refreshAllRegistryValuesComboBox(xchgURComboBox);
+
+                    // Preserve selected index or default to 0 if not selected
+                    int xchgBLComboBoxSelectedIndex = xchgBLComboBox.SelectedIndex == -1 ? 0 : xchgBLComboBox.SelectedIndex;
+
+                    // Clear and populate the movRamL ComboBox
+                    xchgBLComboBox.Items.Clear();
+
+                    if (memory.Count != 0)
+                    {
+                        foreach (KeyValuePair<string, int> entry in memory)
+                        {
+                            string key = entry.Key;
+                            int value = entry.Value;
+
+                            RamMemoryView ramValue = new RamMemoryView { Column1 = entry.Key, Column2 = entry.Value.ToString("X") };
+
+                            xchgBLComboBox.Items.Add($"{entry.Key} ({entry.Value.ToString("X")})");
+                        }
+                        xchgBLComboBox.IsEnabled = true;
+                        xchgBLComboBox.SelectedIndex = movBLComboBoxSelectedIndex;
+                    }
+                    else
+                    {
+                        xchgBLComboBox.IsEnabled = false;
+                    }
+
+                    refreshAllRegistryValuesComboBox(xchgBRComboBox);
 
 
             isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
