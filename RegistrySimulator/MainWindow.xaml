@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Height="600" Width="780"
         ResizeMode="NoResize"
-        Title="SOnaR - Symulator Operacji na Rejestrach">
+        Title="SONaR - Symulator Operacji na Rejestrach">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350"/>
