@@ -216,6 +216,29 @@ namespace RegistrySimulator
             }
         }
 
+        private void PushClick(object sender, RoutedEventArgs e)
+        {
+            string registerName = pushComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            RegisterSimulator.Push(registerName);
+            MessageBox.Show($"Wykonano operację PUSH z rejestru {registerName}" +
+                $"({RegisterSimulator.GetRegistryValueFromString(registerName).ToString("X")})");
+            refreshValues();
+        }
+        private void PopClick(object sender, RoutedEventArgs e)
+        {
+            string registerName = popComboBox.SelectedItem.ToString().Substring(0, 2); //Getting two first characters, because string looks like it "AX (xx)"
+            if(RegisterSimulator.Pop(registerName))
+            {
+                MessageBox.Show($"Wykonano operację POP do rejestru {registerName}" +
+                    $"({RegisterSimulator.GetRegistryValueFromString(registerName).ToString("X")})");
+                refreshValues();
+            }
+            else
+            {
+                MessageBox.Show("Stos jest pusty.");
+            }
+
+        }
 
         private bool isAddingValuesToComboBoxes = false; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing
 
@@ -269,13 +292,20 @@ namespace RegistrySimulator
                     ramListView.Items.Add(ramValue);
                 }
 
+                // ------------ SECTION 1: STACK LISTVIEW ------------
+
+                Stack<int> stack = RegisterSimulator.GetStack();
+
+                stackListView.Items.Clear();
+                foreach (int value in stack)
+                {
+                    stackListView.Items.Add(value.ToString("X"));
+                }
 
 
-
-
-            // #######################################
-            // ### SECTION 2: INSERT AND EDITING   ###
-            // #######################################
+                // #######################################
+                // ### SECTION 2: INSERT AND EDITING   ###
+                // #######################################
 
 
 
@@ -388,6 +418,31 @@ namespace RegistrySimulator
                     }
 
                     refreshAllRegistryValuesComboBox(xchgBRComboBox);
+
+
+                    //// <------- SECTION 2, EDITING DATA: TAB 3 ------->
+                    
+                    // Preserve selected index or default to 0 if not selected
+                    int pushComboBoxSelectedIndex = pushComboBox.SelectedIndex == -1 ? 0 : pushComboBox.SelectedIndex;
+
+                    //Addressing index type combobox
+                    pushComboBox.Items.Clear();
+                    pushComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+                    pushComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+                    pushComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+                    pushComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+                    pushComboBox.SelectedIndex = pushComboBoxSelectedIndex;
+
+                    // Preserve selected index or default to 0 if not selected
+                    int popComboBoxSelectedIndex = popComboBox.SelectedIndex == -1 ? 0 : popComboBox.SelectedIndex;
+
+                    //Addressing index type combobox
+                    popComboBox.Items.Clear();
+                    popComboBox.Items.Add($"AX ({RegisterSimulator.AX.ToString("X")})");
+                    popComboBox.Items.Add($"BX ({RegisterSimulator.BX.ToString("X")})");
+                    popComboBox.Items.Add($"CX ({RegisterSimulator.CX.ToString("X")})");
+                    popComboBox.Items.Add($"DX ({RegisterSimulator.DX.ToString("X")})");
+                    popComboBox.SelectedIndex = popComboBoxSelectedIndex;
 
 
             isAddingValuesToComboBoxes = true; // bool to block event MovRamSelectionChanged when Comboboxes are refreshing

@@ -24,6 +24,9 @@ namespace RegistrySimulator
         public static int SI { get; set; } = 0;
         public static int Of { get; set; } = 0;
 
+        // Stack for registers values stack
+        private static Stack<int> stack = new Stack<int>();
+
 
         // Method to set registry value based on register name and value
         public static bool SetRegistry(string registerName, object value)
@@ -73,6 +76,31 @@ namespace RegistrySimulator
             {
                 MessageBox.Show("Error: Unknown register name - " + registerName); // Register name not found
                 return 0;
+            }
+        }
+        public static Stack<int> GetStack()
+        {
+            return stack;
+        }
+
+        public static void Push(string registerName)
+        {
+            int registerValue = GetRegistryValueFromString(registerName);
+            stack.Push(registerValue);
+        }
+
+        public static bool Pop(string registerName)
+        {
+            if (stack.Count > 0)
+            {
+                int poppedValue = stack.Pop();
+
+                SetRegistry(registerName, poppedValue);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
