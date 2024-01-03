@@ -103,10 +103,10 @@
     <Resource Include="right-arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.ico" />
+    <Resource Include="xchg-arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="xchg-arrow.png" />
+    <Resource Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
