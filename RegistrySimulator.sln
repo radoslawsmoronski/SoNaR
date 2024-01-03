@@ -7,12 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoNaR", "RegistrySimulator\
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		DefaultBuild|Any CPU = DefaultBuild|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.All|Any CPU.ActiveCfg = Debug|Any CPU
+		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.All|Any CPU.Build.0 = Debug|Any CPU
+		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.DefaultBuild|Any CPU.ActiveCfg = Debug|Any CPU
+		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0023240B-B73F-4C29-BC54-DB6CC9B4DDFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
